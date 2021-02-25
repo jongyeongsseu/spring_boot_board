@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<title>작성글</title>
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	
+</head>
+
+<body>
+
+	<table class="table">
+	<thead class="thead-dark">
+	<tr>
+	  <th scope="col">글 번호</th>
+	  <th scope="col">작성자</th>
+	  <th scope="col">글 제목</th>
+	  <th scope="col">작성 일자</th>
+	  <th scope="col">조회수</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr th:each="list : ${list}">
+	  <th scope="row" th:text="${list.bId}">글 번호</th>
+	  <td th:text="${list.bName}">작성자</td>
+	  <td><a th:unless="${list.bIndent<=0}" th:each="indent:${#numbers.sequence(1, list.bIndent)}" th:text="[Re]">[Re]</a>
+	  <a th:href="@{'/board/' + ${list.bId}}" th:text="${list.bTitle}">글 제목</a></td>
+	  <td th:text="${list.bDate}">작성 일자</td>
+	  <td th:text="${list.bHit}">조회수</td>
+	</tr>
+	</tbody>
+	<tr>
+	  <td><a href="${contextPath}/board/write">글 작성</a></td>
+	</tr>
+	</table>
+
+</body>
+
+</html>
