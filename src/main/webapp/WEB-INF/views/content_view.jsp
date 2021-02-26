@@ -1,36 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
-<!DOCTYPE>
-<html>
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<title>글 내용</title>
-
-<style>
-
-h1 {
-  padding: 70px 70px;
-  text-align: center;
-}
-
-</style>
-
-<!-- Bootstrap -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
-<!-- Ajax -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<script>
-
+  <meta charset="UTF-8">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <!-- Ajax -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>글 내용</title>
+  <style>
+  h1 {
+    padding: 70px 70px;
+    text-align: center;
+  }
+  </style>
+  <script>
 	$(document).ready(function() {
 		
 		$("#modifyForm").submit(function(event) {
@@ -66,35 +57,28 @@ h1 {
 		  	});
 		});
 	});
-
-</script>
-
-<script>
-
-function deletePost() {
+  </script>
+  <script>
+	function deletePost() {
 	
-	$.ajax({
-		type: 'DELETE',
-		url: '${contextPath}/board/${content_view.bId}',
-		cache: false,
-		success: function(result) {
-			if (result == 'SUCCESS') {
-				$(location).attr('href', '${contextPath}/board');
+		$.ajax({
+			type: 'DELETE',
+			url: '${contextPath}/board/${content_view.bId}',
+			cache: false,
+			success: function(result) {
+				if (result == 'SUCCESS') {
+					$(location).attr('href', '${contextPath}/board');
+				}
+			},
+			error: function(e) {
+				console.log(e);
 			}
-		},
-		error: function(e) {
-			console.log(e);
-		}
-	});
-}
-
-</script>
-
+		});
+	}
+  </script>
 </head>
 <body>
-
   <h1>글 내용</h1>
-
   <div class="container">
   <form id="modifyForm" action="${contextPath}/board/${content_view.bId}">
     <input type="hidden" id="bId" value="${content_view.bId}">
@@ -119,10 +103,12 @@ function deletePost() {
 		<textarea name="Description_Loss" rows="10" cols="100" class="form-control" id="bContent">${content_view.bContent}</textarea>
 	  </div>
 	  <div class="form-group">
-	    <input type="submit" class="btn btn-dark" value="수정"> &nbsp; <button class="btn btn-dark" onclick='javascript:deletePost();'>삭제</button> &nbsp; <button type="button" class="btn btn-dark" onclick="location.href='${contextPath}/board'">목록</button> &nbsp; <button type="button" class="btn btn-dark" onclick="location.href='${contextPath}/board/reply/${content_view.bId}'">답글</button>
+	    <input type="submit" class="btn btn-dark" value="수정"> &nbsp; 
+	    <button class="btn btn-dark" onclick='javascript:deletePost();'>삭제</button> &nbsp; 
+	    <button type="button" class="btn btn-dark" onclick="location.href='${contextPath}/board'">목록</button> &nbsp; 
+	    <button type="button" class="btn btn-dark" onclick="location.href='${contextPath}/board/reply/${content_view.bId}'">답글</button>
       </div>
     </form>
   </div>
-
 </body>
 </html>
