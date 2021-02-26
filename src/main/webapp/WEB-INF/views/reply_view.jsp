@@ -22,7 +22,6 @@
   }
   </style>
   <script>
-
 	$(document).ready(function(){
 		
 		$("#replyForm").submit(function(event) {
@@ -64,7 +63,6 @@
 			})
 		});
 	});
-	
   </script>
 </head>
 <body>
